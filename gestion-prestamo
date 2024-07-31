@@ -1,0 +1,37 @@
+package Biblioteca;
+
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+class GestionPrestamos {
+    private Queue<Prestamo> prestamos;
+
+    public GestionPrestamos() {
+        prestamos = new LinkedList<>();
+    }
+
+    public void realizarPrestamo(Libro libro, usuarios usuario, LocalDate fechaPrestamo, LocalDate fechaDevolucion) {
+        Prestamo prestamo = new Prestamo(libro, usuario, fechaPrestamo, fechaDevolucion);
+        prestamos.add(prestamo);
+    }
+
+    public void devolverLibro(Libro libro) {
+        prestamos.removeIf(prestamo -> prestamo.getLibro().equals(libro));
+    }
+
+    public List<Prestamo> consultarPrestamosActivos() {
+        return new LinkedList<>(prestamos);
+    }
+
+    public void generarInformePrestamos() {
+        if (prestamos.isEmpty()) {
+            System.out.println("No hay préstamos recientes ");
+        } else {
+            for (Prestamo prestamo : prestamos) {
+                System.out.println(prestamo);
+            }
+        }
+    }
+}
