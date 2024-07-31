@@ -1,0 +1,38 @@
+package Biblioteca;
+
+import java.time.LocalDate;
+
+class Prestamo {
+    private Libro libro;
+    private usuarios usuario;
+    private LocalDate fechaPrestamo;
+    private LocalDate fechaDevolucion;
+
+    public Prestamo(Libro libro, usuarios usuario, LocalDate fechaPrestamo, LocalDate fechaDevolucion) {
+        this.libro = libro;
+         this.usuario = usuario;
+         this.fechaPrestamo = fechaPrestamo;
+         this.fechaDevolucion = fechaDevolucion;
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public usuarios getUsuario() {
+        return usuario;
+    }
+
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public LocalDate getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+    @Override
+    public String toString() {
+        return "Prestamo{" + "libro=" + libro + ", usuario=" + usuario + ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion + '}';
+    }
+}
