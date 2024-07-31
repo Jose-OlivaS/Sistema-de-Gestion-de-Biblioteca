@@ -1,0 +1,38 @@
+package Biblioteca;
+
+import java.util.HashMap;
+import java.util.Map;
+
+class GestionUsuarios {
+    private static Map<String, usuarios> usuarios;
+
+    public GestionUsuarios() {
+        usuarios = new HashMap<>();
+    }
+
+    public static void registrarUsuario(usuarios usuario) {
+        usuarios.put(usuario.getNumeroIdentificacion(), usuario);
+    }
+
+    public usuarios consultarUsuario(String numeroIdentificacion) {
+        return usuarios.get(numeroIdentificacion);
+    }
+
+    public void actualizarUsuario(String numeroIdentificacion, usuarios usuarioActualizado) {
+        if (usuarios.containsKey(numeroIdentificacion)) {
+            usuarios.put(numeroIdentificacion, usuarioActualizado);
+        } else {
+            System.out.println("Usuario no encontrado.");
+        }
+    }
+
+    public void listarUsuarios() {
+        if (usuarios.isEmpty()) {
+            System.out.println("No hay usuarios registrados.");
+        } else {
+            for (usuarios usuario : usuarios.values()) {
+                System.out.println(usuario);
+            }
+        }
+    }
+}
