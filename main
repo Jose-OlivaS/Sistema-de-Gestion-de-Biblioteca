@@ -1,0 +1,51 @@
+package Biblioteca;
+
+import java.time.LocalDate;
+
+public class Main {
+    public static void main(String[] args) {
+        GestionPrestamos gestorPrestamos = new GestionPrestamos();
+         GestionUsuarios gestorUsuarios = new GestionUsuarios();
+          Biblioteca biblioteca = new Biblioteca();
+
+         usuarios usuario1 = new usuarios("PAco", "Raban", "pacorabban@gmail.com", "237990");
+        usuarios usuario2 = new usuarios("Luisa", "Marquez", "luisamarquez@live.com", "312464");
+
+        GestionUsuarios.registrarUsuario(usuario1);
+         GestionUsuarios.registrarUsuario(usuario2);
+
+        Libro libro1 = new Libro("MI AMIGO ALEMÁN", "EVA SANTANA LOPEZ", "Grupo Edebé", 2019, 244);
+        Libro libro2 = new Libro("BERSERK MAXIMUM 2", "KENTARO MIURAz", "PANINI ESPAÑA S.A.", 2022, 472);
+        Libro libro3 = new Libro("MENTALIDAD MAMBA", "KOBE BRYANT", "Alienta Editorial", 2019, 208);
+        Libro libro4 = new Libro("LAS 48 LEYES DEL PODER", "ROBERT GREENE", "Espasa", 1999, 216);
+        Libro libro5 = new Libro("IDEOLOGÍAS", "ANTONELLA MARTY", "Deusto", 2024, 400);
+
+        biblioteca.agregarLibro(libro1);
+         biblioteca.agregarLibro(libro2);
+          biblioteca.agregarLibro(libro3);
+           biblioteca.agregarLibro(libro4);
+            biblioteca.agregarLibro(libro5);
+
+        LocalDate fechaPrestamo = LocalDate.now();
+        LocalDate fechaDevolucion = fechaPrestamo.plusDays(30);
+
+        gestorPrestamos.realizarPrestamo(libro1, usuario1, fechaPrestamo, fechaDevolucion);
+        gestorPrestamos.realizarPrestamo(libro2, usuario2, fechaPrestamo, fechaDevolucion);
+
+        System.out.println("Prestamos activos:");
+         gestorPrestamos.generarInformePrestamos();
+
+        System.out.println("*Devolviendo libro: 'MENTALIDAD MAMBA':");
+         gestorPrestamos.devolverLibro(libro1);
+
+
+        System.out.println("*Prestamos activos despues de la devolucion 'MENTALIDAD MAMBA':");
+         gestorPrestamos.generarInformePrestamos();
+          System.out.println("*Devolviendo libro 'IDEOLOGÍAS':");
+           gestorPrestamos.devolverLibro(libro2);
+
+
+        System.out.println("Prestamos activos después de devolver 'IDEOLOGÍAS':");
+         gestorPrestamos.generarInformePrestamos();
+    }
+}
